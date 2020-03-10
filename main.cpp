@@ -63,7 +63,7 @@ void bwXOr(const uint8_t& value, const string& bit_string = R"(00000000)")
     auto          bs = bitset<8 * 1>(value);
     bitset<8 * 1> mask{bit_string};
 
-    auto    bs2 = ((bs) | mask);
+    auto    bs2 = ((bs) ^ mask);
     uint8_t res = bs2.to_ulong();
     cout << setw(4) << setfill(' ') << +value << ": " << bs << "\n";
     cout << "mask: " << mask << " : " << +mask.to_ulong() << "\n";
