@@ -57,7 +57,7 @@ void bwOr(const uint8_t& value, const string& bit_string = R"(00000000)")
     cout << "mask: " << mask << " : " << +mask.to_ulong() << "\n";
     cout << "res : " << bs2 << " : " << +res << "\n";
 }
-void bwXOr(const uint8_t& value, const string& bit_string = R"(00000000)")
+void bwXor(const uint8_t& value, const string& bit_string = R"(00000000)")
 {
     cout << "Bitwise XOR for 1 byte\n";
     auto          bs = bitset<8 * 1>(value);
@@ -67,6 +67,15 @@ void bwXOr(const uint8_t& value, const string& bit_string = R"(00000000)")
     uint8_t res = bs2.to_ulong();
     cout << setw(4) << setfill(' ') << +value << ": " << bs << "\n";
     cout << "mask: " << mask << " : " << +mask.to_ulong() << "\n";
+    cout << "res : " << bs2 << " : " << +res << "\n";
+}
+void bwNot(const uint8_t& value)
+{
+    cout << "Bitwise XOR for 1 byte\n";
+    auto    bs  = bitset<8 * 1>(value);
+    auto    bs2 = ~(bs);
+    uint8_t res = bs2.to_ulong();
+    cout << setw(4) << setfill(' ') << +value << ": " << bs << "\n";
     cout << "res : " << bs2 << " : " << +res << "\n";
 }
 int main()
@@ -79,8 +88,9 @@ int main()
     bwAnd(255, R"(00001111)");
     bwOr(5);
     bwOr(255, R"(00001111)");
-    bwXOr(5);
-    bwXOr(255, "00001111");
+    bwXor(5);
+    bwXor(255, "00001111");
+    bwNot(5);
 
     return 0;
 }
