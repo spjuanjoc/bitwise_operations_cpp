@@ -1,16 +1,18 @@
+// --Bitwise operators
+// Ope |
+//  &  | (bitwise AND) does AND on every bit of two numbers. 1 only if both bits are 1.
+//  |  | (bitwise OR)  Does OR on every bit of two numbers.  1 if any of the two bits is 1.
+//  ^  | (bitwise XOR) Does XOR on every bit of two numbers. 1 if the two bits are different.
+//  ~  | (bitwise NOT) Inverts all bits of it
+//  << |  (left shift) Left  shifts the bits of the first, the second decides the number of places to shift.
+//  >> |  (right shift)Right shifts the bits of the first, the second decides the number of places to shift.
+
 #include <bitset>
 #include <iomanip>
 #include <iostream>
 
 using namespace std;
-/*
-& (bitwise AND) does AND on every bit of two numbers. 1 only if both bits are 1.
-| (bitwise OR)  Does OR on every bit of two numbers.  1 if any of the two bits is 1.
-^ (bitwise XOR) Does XOR on every bit of two numbers. 1 if the two bits are different.
-~ (bitwise NOT) Inverts all bits of it
-<< (left shift) Left  shifts the bits of the first, the second decides the number of places to shift.
->> (right shift)Right shifts the bits of the first, the second decides the number of places to shift.
-*/
+
 void leftShift(const uint8_t& value, const uint8_t& shift)
 {
     cout << "Left shift:\n";
@@ -78,6 +80,7 @@ void bwNot(const uint8_t& value)
     cout << setw(4) << setfill(' ') << +value << ": " << bs << "\n";
     cout << "res : " << bs2 << " : " << +res << "\n";
 }
+
 int main()
 {
     cout << "Hello, bitwise operators!" << endl;
