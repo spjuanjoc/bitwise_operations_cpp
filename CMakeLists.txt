@@ -1,18 +1,19 @@
 cmake_minimum_required(VERSION 3.15)
 project(bitwise_operations_cpp)
 
-set(CMAKE_CXX_STANDARD 17)
+add_executable(${PROJECT_NAME} main.cpp)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
-# For googletest
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread ")
+set(PROJECT_OPTIONS
+    -O3
+    -Wpedantic
+    -Wall
+    -Wextra
+    -Werror
+    )
+target_compile_options(${PROJECT_NAME} INTERFACE ${PROJECT_OPTIONS})
 
-set(SOURCES
-        main.cpp
-        # other.cpp
-        )
-
-# To get the headers
-#include_directories(Module)
-#include_directories(Test/Module)
-
-add_executable(${PROJECT_NAME} ${SOURCES})
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+conan_target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+message("${CONAN_LIBS}")
