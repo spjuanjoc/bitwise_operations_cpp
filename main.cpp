@@ -116,18 +116,35 @@ auto bitwiseNOT(const uint8_t& value)
   return +out_int;
 }
 
-auto twosComplement(const uint16_t& value)
+template<typename T>
+auto twosComplement(const T& value)
 {
   fmt::print("Two's complement\n");
-  fmt::print("In : Hex {0:#04X} - Dec: {0} - Bin: {0:#18b}\n", value);
+  fmt::print("In : Hex {0:#04X} - Dec: {0:<5} - Bin: {0:#18b}\n", value);
 
   auto     bit_input       = std::bitset<8 * sizeof(value)>(value);
   auto     bit_not         = ~(bit_input);
-  uint16_t twos_complement = bit_not.to_ulong() + 1;
+  T twos_complement = bit_not.to_ulong() + 1;
 
-  fmt::print("Out: Hex {0:#04X} - Dec: {0} - Bin: {0:#18b}\n", twos_complement);
+  fmt::print("Out: Hex {0:#04X} - Dec: {0:<5} - Bin: {0:#18b}\n", twos_complement);
 
   return twos_complement;
+}
+
+unsigned short toLittleEndian(const unsigned short big)
+{
+  auto first  = 0x00ff;
+  auto second = 0xff00;
+  auto bits = 8;
+  return (((big & first) << bits) | ((big & second) >> bits));
+}
+
+std::string getEndianness()
+{
+  const int   value{0x01};
+  const void* address                   = static_cast<const void*>(&value);
+  const auto* least_significant_address = static_cast<const unsigned char*>(address);
+  return (*least_significant_address == 0x01) ? "little-endian" : "big-endian";
 }
 
 int main()
@@ -150,6 +167,11 @@ int main()
   bitwiseNOT(5);
   const unsigned short number = 0xCEFF;
   twosComplement(number);
+  const unsigned char number2 = 0xCE;
+  twosComplement(number2);
+  const unsigned short number3 = 0x2f34;
+  fmt::print("To little-endian {:x} - {:x}\n", number3, toLittleEndian(number3));
+  fmt::print("Endianness: {}\n", getEndianness());
 
   return 0;
 }
