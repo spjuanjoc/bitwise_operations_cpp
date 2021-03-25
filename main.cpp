@@ -150,7 +150,6 @@ std::string getEndianness()
 int main()
 {
   fmt::print("Bitwise operations with std::bitset \n");
-
   leftShift(5, 2);
   rightShift(20, 2);
   bitwiseAND(5);
