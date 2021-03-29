@@ -119,16 +119,10 @@ auto bitwiseNOT(const uint8_t& value)
 template<typename T>
 auto twosComplement(const T& value)
 {
-  fmt::print("Two's complement\n");
-  fmt::print("In : Hex {0:#04X} - Dec: {0:<5} - Bin: {0:#18b}\n", value);
+  auto bit_input = std::bitset<8 * sizeof(value)>(value);
+  auto result    = ~(bit_input).to_ulong() + 1;
 
-  auto     bit_input       = std::bitset<8 * sizeof(value)>(value);
-  auto     bit_not         = ~(bit_input);
-  T twos_complement = bit_not.to_ulong() + 1;
-
-  fmt::print("Out: Hex {0:#04X} - Dec: {0:<5} - Bin: {0:#18b}\n", twos_complement);
-
-  return twos_complement;
+  return result;
 }
 
 unsigned short toLittleEndian(const unsigned short big)
@@ -164,12 +158,19 @@ int main()
   bitwiseXOR(5, 15);
   bitwiseXORstr(5, "00001111");
   bitwiseNOT(5);
-  const unsigned short number = 0xCEFF;
-  twosComplement(number);
-  const unsigned char number2 = 0xCE;
-  twosComplement(number2);
+
+  fmt::print("2's complement\n");
+  const uint16_t hex_number      = 0xCEFF;
+  const int16_t  hex16_2c        = twosComplement(hex_number);
+  const uint16_t hex_number1     = 0xFFCE;
+  const int16_t  hex16_2c_2      = twosComplement(hex_number1);
+  const int16_t  signed16_number = 50;
+  int16_t        signed16_2c     = twosComplement(signed16_number);
+  fmt::print("0x{0:>4x} | {0:>5} = {1:>5}\n", hex_number, hex16_2c);
+  fmt::print("0x{0:>4x} | {0:>5} = {1:>5}\n", hex_number1, hex16_2c_2);
+  fmt::print("0x{0:0>4x} | {0:>5} = {1:>5}\n", signed16_number, signed16_2c);
   const unsigned short number3 = 0x2f34;
-  fmt::print("To little-endian {:x} - {:x}\n", number3, toLittleEndian(number3));
+  fmt::print("To little-endian {:x} = {:x}\n", number3, toLittleEndian(number3));
   fmt::print("Endianness: {}\n", getEndianness());
 
   return 0;
