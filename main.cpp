@@ -166,9 +166,17 @@ int main()
   const int16_t  hex16_2c_2      = twosComplement(hex_number1);
   const int16_t  signed16_number = 50;
   int16_t        signed16_2c     = twosComplement(signed16_number);
-  fmt::print("0x{0:>4x} | {0:>5} = {1:>5}\n", hex_number, hex16_2c);
+  uint16_t       u2c             = signed16_2c;
+//  fmt::print("0x{0:>4x} | {0:>5} = {1:>5}\n", hex_number, hex16_2c);
   fmt::print("0x{0:>4x} | {0:>5} = {1:>5}\n", hex_number1, hex16_2c_2);
   fmt::print("0x{0:0>4x} | {0:>5} = {1:>5}\n", signed16_number, signed16_2c);
+  fmt::print("0x{0:0>4x} | {0:>5}\n", u2c);
+  fmt::print("  {0:0>16b}\n", signed16_number);
+//  0000000000110010
+//  1111111111001101
+  fmt::print("  1111111111001101\n");
+  fmt::print("+ {:>16}\n", 1);
+  fmt::print("  {0:b}\n", u2c);
   const unsigned short number3 = 0x2f34;
   fmt::print("To little-endian {:x} = {:x}\n", number3, toLittleEndian(number3));
   fmt::print("Endianness: {}\n", getEndianness());
