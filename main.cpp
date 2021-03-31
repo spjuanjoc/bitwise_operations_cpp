@@ -160,17 +160,16 @@ int main()
   bitwiseNOT(5);
 
   fmt::print("2's complement\n");
-  const uint16_t hex_number      = 0xCEFF;
-  const int16_t  hex16_2c        = twosComplement(hex_number);
-  const uint16_t hex_number1     = 0xFFCE;
-  const int16_t  hex16_2c_2      = twosComplement(hex_number1);
-  const int16_t  signed16_number = 50;
-  int16_t        signed16_2c     = twosComplement(signed16_number);
-  uint16_t       u2c             = signed16_2c;
-  const uint8_t  unsigned16_number2 = 0xFD;
-  const int8_t   signed16_number2   = unsigned16_number2;
-  uint8_t        unsigned16_2c2     = twosComplement(unsigned16_number2);
-  int8_t         s2c2               = unsigned16_2c2;
+  const uint16_t hex_number        = 0xCEFF;
+  const int16_t  hex16_2c          = twosComplement(hex_number);
+  const uint16_t hex_number1       = 0xFFCE;
+  const int16_t  hex16_2c_2        = twosComplement(hex_number1);
+  const int16_t  signed16_number   = 50;
+  const uint16_t unsigned16_number = signed16_number;
+  int16_t        signed16_2c       = twosComplement(signed16_number);
+  uint16_t       u2c               = signed16_2c;
+  const uint8_t  unsigned8_number2 = -50;
+  const int8_t   signed8_number2   = unsigned8_number2;
   fmt::print("0x{0:>4x} | {0:>5} = {1:>5}\n", hex_number, hex16_2c);
   fmt::print("0x{0:>4x} | {0:>5} = {1:>5}\n", hex_number1, hex16_2c_2);
   fmt::print("0x{0:0>4x} | {0:>5} = {1:>5}\n", signed16_number, signed16_2c);
@@ -182,7 +181,8 @@ int main()
   fmt::print("+ {:>16}\n", 1);
   fmt::print("  {0:b}\n", u2c);
 
-  fmt::print("unsigned: {} is signed: {} \n", unsigned16_number2, signed16_number2);
+  fmt::print("unsigned: {} is signed: {} \n", unsigned16_number, signed16_number);
+  fmt::print("unsigned: {} is signed: {} \n", unsigned8_number2, signed8_number2);
 
   const unsigned short number3 = 0x2f34;
   fmt::print("To little-endian {:x} = {:x}\n", number3, toLittleEndian(number3));
